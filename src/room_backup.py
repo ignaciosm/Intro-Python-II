@@ -1,17 +1,5 @@
-from room import Room
-from room import RoomItem
-from player import Player
-# from item import Item
-# from move import Move
-
 # Implement a class to hold room information. This should have name and description attributes.
-class Item:
-    def __init__(self, name):
-        self.name = name
-    def get_item(self, player):
-        current_player.items.append(self)
-    def drop_item(self, player):
-        current_player.items.remove(self)
+
 
 rooms = [Room("outside", "desc1"), 
          Room("foyer", "desc2"), 
@@ -20,6 +8,52 @@ rooms = [Room("outside", "desc1"),
          Room("treasure", "desc5")]
 
 
+
+
+
+# create items
+items = [Item("mushrooms"), Item("gold"), Item("bread"), Item("sword"), Item("key"), Item("treasure")]
+
+# current_player = Player("ignacio", 'outside')
+
+# pickup item
+# items[0].get_item(current_player)
+# items[1].get_item(current_player)
+# items[2].get_item(current_player)
+# print(len(current_player.items))
+
+# drop item
+# items[0].drop_item(current_player)
+# print(len(current_player.items))
+
+
+# add items to rooms
+class RoomItem:
+    def __init__(self, room, item):
+        self.room = room  
+        self.item = item  
+
+# add items to rooms        
+rooms[0].add_room_item(items[0]) # mushrooms to outside
+rooms[0].add_room_item(items[1]) # gold to outside
+rooms[1].add_room_item(items[2]) # bread to foyer
+rooms[1].add_room_item(items[3]) # bread to foyer
+rooms[2].add_room_item(items[3]) # key to overlook
+
+# print(rooms[1].items[1].item.name)   
+
+# write class cardinal point : n, s, e, w
+class Direction:
+    def __init__(self, abbr, opposite):
+        self.abbr = abbr
+        self.opposite = opposite
+
+# write room-allowed-directions: direction, target (the room you reach with that movement)
+# class Move:
+#     def __init__(self, from_room, direction, to_room):
+#         self.from_room = from_room
+#         self.direction = direction
+#         self.to_room = to_room
 
 moves = [{"from_room": "outside", "direction": "n", "to_room": "foyer"}, 
     {"from_room": "foyer", "direction": "s", "to_room": "outside"},
@@ -30,20 +64,11 @@ moves = [{"from_room": "outside", "direction": "n", "to_room": "foyer"},
     {"from_room": "narrow", "direction": "n", "to_room": "treasure"},
     {"from_room": "treasure", "direction": "s", "to_room": "narrow"}]
 
-# create items
-items = [Item("mushrooms"), Item("gold"), Item("bread"), Item("sword"), Item("key"), Item("treasure")]
 
-# current_player = Player("ignacio", 'outside')
-
-# add items to rooms        
-rooms[0].add_room_item(items[0]) # mushrooms to outside
-rooms[0].add_room_item(items[1]) # gold to outside
-rooms[1].add_room_item(items[2]) # bread to foyer
-rooms[1].add_room_item(items[3]) # bread to foyer
-rooms[2].add_room_item(items[3]) # key to overlook
+# write class player with attributes: name, current
 
 
-
+# write method for movement in specified directions
 
 
 current_player = Player(input("Enter player name: "), "outside")
@@ -193,3 +218,7 @@ if current_player.current == "treasure":
         print("boring")    
 # player new move
 print(f"The END")
+
+
+
+
